@@ -36,6 +36,7 @@ This script processes village-level population data (CSV) to generate a formatte
 1. Place your input CSV file in the same directory.
     - Default expected filename: `jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv`
     - You can modify `process_population.py` to change `INPUT_FILE` if needed.
+    - **Filtering**: To process a different Kabupaten/City, open `process_population.py` and change the `FILTER_PREFIX` variable (e.g., `FILTER_PREFIX = '1105'` for a different region code).
 
 2. Run the script:
 
