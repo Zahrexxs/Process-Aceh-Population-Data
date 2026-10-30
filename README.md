@@ -1,47 +1,77 @@
 # Aceh Population Data Processing
 
-This script processes village-level population data (CSV) to generate a formatted Excel report. It specifically aggregates data to the Kabupaten (District) and Kecamatan (Sub-district) levels and formats region codes.
+Processes village-level population data (CSV) into a formatted Excel report. It
+aggregates counts to the Kabupaten (district) and Kecamatan (sub-district) levels
+and formats region codes.
 
 ## Features
 
-- Filters data for specific region prefixes (default `1103`).
-- Aggregates population counts from Desa (Village) level to Kecamatan and Kabupaten levels.
-- Formats region codes (e.g., `11.03`, `11.03.01`).
-- Generates a pivoting Excel report with Male/Female/Total breakdowns.
+- Filters rows by a configurable region-code prefix (default `1103`).
+- Aggregates population counts from Desa (village) level to Kecamatan and Kabupaten levels.
+- Formats region codes (`1103` → `11.03`, `110301` → `11.03.01`, `1103012001` → `11.03.01.2001`).
+- Generates a pivoted Excel report with Male/Female/Total columns.
+- Resolves CSV columns by header name, with a positional fallback for the published BPS layout.
+- Clear errors when the input file or expected columns are missing.
 
-## Prerequisites
+## Requirements
 
-- Python 3.x
-- `pandas`
-- `openpyxl`
+- Python 3.10+
+- `pandas`, `openpyxl`
 
 ## Setup
 
-1. Clone this repository.
-2. (Optional but recommended) Create a virtual environment:
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# Linux/macOS: source .venv/bin/activate
 
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-    ```
-
-3. Install dependencies:
-
-    ```bash
-    pip install pandas openpyxl
-    ```
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. Place your input CSV file in the same directory.
-    - Default expected filename: `jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv`
-    - You can modify `process_population.py` to change `INPUT_FILE` if needed.
-    - **Filtering**: To process a different Kabupaten/City, open `process_population.py` and change the `FILTER_PREFIX` variable (e.g., `FILTER_PREFIX = '1105'` for a different region code).
+Place the BPS CSV in the repository root (default filename
+`jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv`) and run:
 
-2. Run the script:
+```bash
+python process_population.py
+```
 
-    ```bash
-    python process_population.py
-    ```
+Or pass paths and the region prefix explicitly:
 
-3. The output file `Population_Data_Processed.xlsx` will be generated in the same directory.
+```bash
+python process_population.py \
+  --input data/jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv \
+  --output output/Population_Data_Processed.xlsx \
+  --prefix 1105
+```
+
+| Option | Default | Description |
+|---|---|---|
+| `-i`, `--input` | `jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv` | Input CSV path |
+| `-o`, `--output` | `Population_Data_Processed.xlsx` | Output Excel path |
+| `-p`, `--prefix` | `1103` | Desa code prefix (Kabupaten/City) to keep |
+| `--sep` | `;` | CSV delimiter |
+
+## Output
+
+An Excel file with one sheet and the columns:
+
+| Column | Description |
+|---|---|
+| `KODE` | Formatted region code (kabupaten, kecamatan, or desa) |
+| `DESA` | Region name (level matches the code) |
+| `LAKI-LAKI` | Male population |
+| `PEREMPUAN` | Female population |
+| `TOTAL` | `LAKI-LAKI` + `PEREMPUAN` |
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+## License
+
+No license file is included in this repository. All rights reserved.
