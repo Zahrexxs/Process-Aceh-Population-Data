@@ -1,7 +1,23 @@
-# Ignore everything
-*
+# Input data
+*.csv
+data/
 
-# Whitelist files to track
-!process_population.py
-!README.md
-!.gitignore
+# Generated reports
+*.xlsx
+*.xls
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
