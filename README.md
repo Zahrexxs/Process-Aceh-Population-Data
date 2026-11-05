@@ -1,11 +1,11 @@
 <div align="center">
 
-# Aceh Population Data Processing
+# Tally
 
 **Turn messy BPS village-level CSV exports into a clean, layered Excel report.**
 
-[![CI](https://github.com/Zahrexxs/Process-Aceh-Population-Data/actions/workflows/ci.yml/badge.svg)](https://github.com/Zahrexxs/Process-Aceh-Population-Data/actions/workflows/ci.yml)
-![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
+[![CI](https://github.com/Zahrexxs/Tally/actions/workflows/ci.yml/badge.svg)](https://github.com/Zahrexxs/Tally/actions/workflows/ci.yml)
+![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-2.x-150458?logo=pandas&logoColor=white)
 ![openpyxl](https://img.shields.io/badge/openpyxl-3.x-217346?logo=microsoftexcel&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
@@ -59,14 +59,14 @@ output is one sheet with a row for every administrative level.
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.11+
 - `pandas` and `openpyxl` (installed from `requirements.txt`)
 
 ## Install
 
 ```bash
-git clone https://github.com/Zahrexxs/Process-Aceh-Population-Data.git
-cd Process-Aceh-Population-Data
+git clone https://github.com/Zahrexxs/Tally.git
+cd Tally
 
 python -m venv .venv
 # Windows
@@ -82,13 +82,13 @@ pip install -r requirements.txt
 Put the CSV in the repository root and run:
 
 ```bash
-python process_population.py
+python tally.py
 ```
 
 Or point at explicit paths:
 
 ```bash
-python process_population.py \
+python tally.py \
   --input data/jumlah-penduduk-desa-berdasarkan-jenis-kelamin.csv \
   --output output/Population_Data_Processed.xlsx \
   --prefix 1105
@@ -137,7 +137,7 @@ that writes and re-reads a real `.xlsx`. CI runs it on Python 3.12.
 ## Project structure
 
 ```
-process_population.py   CLI, column resolution, aggregation and Excel export
+tally.py   CLI, column resolution, aggregation and Excel export
 tests/                  pytest suite
 requirements.txt        runtime dependencies
 requirements-dev.txt    runtime + pytest
