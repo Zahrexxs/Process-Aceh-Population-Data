@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from process_population import format_code, main, process_dataframe, resolve_columns
+from tally import format_code, main, process_dataframe, resolve_columns
 
 COLUMNS = [
     "provinsi_kode",
