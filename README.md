@@ -8,6 +8,7 @@
 ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-2.x-150458?logo=pandas&logoColor=white)
 ![openpyxl](https://img.shields.io/badge/openpyxl-3.x-217346?logo=microsoftexcel&logoColor=white)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
 Aggregates village population data to **Kabupaten**, **Kecamatan** and **Desa**
 level, pivots male/female counts, and formats Indonesian region codes.
@@ -145,4 +146,4 @@ pyproject.toml          pytest configuration
 
 ## License
 
-No license file is included in this repository. All rights reserved.
+[MIT](./LICENSE) © 2026 Muhammad Naufal Azzahri
